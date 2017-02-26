@@ -4,6 +4,7 @@ import './index.css';
 import { Layout, Menu, Breadcrumb, Icon , Message } from 'antd';
 const { SubMenu } = Menu;
 const { Header, Content, Footer, Sider } = Layout;
+var MemberController = require('./controller/MemberController.js');
 
 class IndexPage extends Layout{
   constructor(props) {
@@ -13,12 +14,12 @@ class IndexPage extends Layout{
 
   MenuSelected(item,key,selectedKeys){
     this.setState({view:item.key});
-    console.log(this.state);
+    // console.log(this.state);
   }
 
   render() {
     return (
-      <Layout>
+      <Layout style={{ height:'100%' }}>
           <Header className="header">
             <div className="logo" />
             <Menu
@@ -33,7 +34,7 @@ class IndexPage extends Layout{
               <Menu.Item key="profile">我的</Menu.Item>
             </Menu>
           </Header>
-          <Content style={{ padding: '0 50px' }}>
+          <Content style={{ padding: '0 50px',minHeight: 280 }}>
             <Breadcrumb style={{ margin: '12px 0' }}>
               <Breadcrumb.Item>主页</Breadcrumb.Item>
               <Breadcrumb.Item>项目</Breadcrumb.Item>
@@ -64,7 +65,7 @@ class IndexPage extends Layout{
                 </Menu>
               </Sider>
               <Content style={{ padding: '0 24px', minHeight: 280 }}>
-                { this.state.view }
+                <MemberController name={ this.state.view }/>
               </Content>
             </Layout>
           </Content>
